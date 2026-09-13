@@ -9,14 +9,14 @@
 #include <type_traits>
 #include <utility>
 
-#ifndef CPP_WORK_CACHE_LINE_SIZE
-#define CPP_WORK_CACHE_LINE_SIZE 64
+#ifndef FALSE_SHARING_CACHE_LINE_SIZE
+#define FALSE_SHARING_CACHE_LINE_SIZE 64
 #endif
 
-namespace cpp_work {
+namespace false_sharing {
 
 // An experiment parameter, not a claim about every processor.
-inline constexpr std::size_t cache_line_size = CPP_WORK_CACHE_LINE_SIZE;
+inline constexpr std::size_t cache_line_size = FALSE_SHARING_CACHE_LINE_SIZE;
 
 enum class IndexLayout { shared, separated };
 
@@ -122,4 +122,4 @@ class SpscQueue {
   alignas(Line) std::array<std::optional<T>, Slots> slots_{};
   alignas(Line) detail::Indices<Layout, Line> indices_{};
 };
-}  // namespace cpp_work
+}  // namespace false_sharing

@@ -82,20 +82,20 @@
   "compiler_version": "g++ (GCC) 16.2.1 20260810\nCopyright (C) 2026 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n",
   "compile_commands": [
     {
-      "directory": "/tmp/cpp-work-stage/build-release",
-      "command": "/usr/bin/g++ -DCPP_WORK_CACHE_LINE_SIZE=64 -I/tmp/cpp-work-stage/include -O3 -DNDEBUG -std=c++23 -Wall -Wextra -Wpedantic -Wconversion -Wshadow -o CMakeFiles/spsc_queue_test.dir/tests/spsc_queue_test.cpp.o -c /tmp/cpp-work-stage/tests/spsc_queue_test.cpp",
-      "file": "/tmp/cpp-work-stage/tests/spsc_queue_test.cpp",
-      "output": "/tmp/cpp-work-stage/build-release/CMakeFiles/spsc_queue_test.dir/tests/spsc_queue_test.cpp.o"
+      "directory": "<project>/build-release",
+      "command": "/usr/bin/g++ -DFALSE_SHARING_CACHE_LINE_SIZE=64 -I<project>/include -O3 -DNDEBUG -std=c++23 -Wall -Wextra -Wpedantic -Wconversion -Wshadow -o CMakeFiles/spsc_queue_test.dir/tests/spsc_queue_test.cpp.o -c <project>/tests/spsc_queue_test.cpp",
+      "file": "<project>/tests/spsc_queue_test.cpp",
+      "output": "<project>/build-release/CMakeFiles/spsc_queue_test.dir/tests/spsc_queue_test.cpp.o"
     },
     {
-      "directory": "/tmp/cpp-work-stage/build-release",
-      "command": "/usr/bin/g++ -DCPP_WORK_CACHE_LINE_SIZE=64 -I/tmp/cpp-work-stage/include -O3 -DNDEBUG -std=c++23 -Wall -Wextra -Wpedantic -Wconversion -Wshadow -o CMakeFiles/false_sharing_bench.dir/benchmarks/false_sharing.cpp.o -c /tmp/cpp-work-stage/benchmarks/false_sharing.cpp",
-      "file": "/tmp/cpp-work-stage/benchmarks/false_sharing.cpp",
-      "output": "/tmp/cpp-work-stage/build-release/CMakeFiles/false_sharing_bench.dir/benchmarks/false_sharing.cpp.o"
+      "directory": "<project>/build-release",
+      "command": "/usr/bin/g++ -DFALSE_SHARING_CACHE_LINE_SIZE=64 -I<project>/include -O3 -DNDEBUG -std=c++23 -Wall -Wextra -Wpedantic -Wconversion -Wshadow -o CMakeFiles/false_sharing_bench.dir/benchmarks/false_sharing.cpp.o -c <project>/benchmarks/false_sharing.cpp",
+      "file": "<project>/benchmarks/false_sharing.cpp",
+      "output": "<project>/build-release/CMakeFiles/false_sharing_bench.dir/benchmarks/false_sharing.cpp.o"
     }
   ],
   "command": [
-    "/tmp/cpp-work-stage/build-release/false_sharing_bench",
+    "<project>/build-release/false_sharing_bench",
     "--cpu-a",
     "1",
     "--cpu-b",
@@ -144,12 +144,12 @@
   },
   "git_head": null,
   "source_sha256": {
-    "CMakeLists.txt": "3b9b115f44e7041b23c828e7765fc824f8bd314cc8f9c7402085339a8fd6ee3f",
-    "benchmarks/false_sharing.cpp": "c0d2b7116d6f248a0e045588cf1a0f4c9bdcc538720355e5c7df06d5b2318656",
-    "include/cpp_work/spsc_queue.hpp": "3bdc1f3ce583e66ffc5f79d5e6b766a229f01a3a3bc735be3d80bae724ff1875",
-    "scripts/run_experiment.py": "37c4237a4102986d9a307c1596724102c21dbbd4ebdc0587e37da89e7dad7274",
+    "CMakeLists.txt": "9167dde5ab405844d57df9b9f8fbfbf742b6f50c27f309a0e4ceb95d8295e315",
+    "benchmarks/false_sharing.cpp": "22c5c9f5988f56054da9c32781622362a73cb28c92beafc4c74e0985cafe2808",
+    "include/false_sharing/spsc_queue.hpp": "ff39314ba94545d7115abb17c85896ad8f5463e37ece8362fce79f1acc6f56b9",
+    "scripts/run_experiment.py": "5f20b7b58edb032d8ed4878153df6b43858e7614d67ab1c543aecde16e943b6e",
     "scripts/summarize.py": "5bd7e4477182600e16a5bcd4692bfa48e0a87b5bce5dc327952f934d2ca3b1bf",
-    "tests/spsc_queue_test.cpp": "3b5b1ecc836d0ee9e9584192f6be9300637bf38ed6bf86808f9008e02cba2afc"
+    "tests/spsc_queue_test.cpp": "43e81637640ec578827393a6a91ebf6d2673c0153d7913314b09a0e8f56eaf00"
   },
   "binary_sha256": "30ee5efeae7dafb18f89ece19c3db7878d4fede47f765ab174e2969f33e3f449",
   "notes": "Queue ns/op is amortized wall time, not per-message latency. Every queue payload is checked in order inside the timed loop. CPU frequency samples are snapshots, not a stable-frequency guarantee.",
@@ -186,5 +186,9 @@
       1.30615234375
     ]
   },
-  "finished_utc": "2026-09-13T12:46:08.761727+00:00"
+  "finished_utc": "2026-09-13T12:46:08.761727+00:00",
+  "artifact_normalization": {
+    "description": "Project identifiers and header paths were renamed after measurement; absolute staging paths are shown as <project>. Source hashes describe the normalized source archive. Timings and the original binary hash are unchanged.",
+    "original_record_url": "https://github.com/BahadirAydin/false-sharing/tree/23dca052bc3344211d1d3d22b8aa26c4a9ca91b0/results/2026-09-13-gcc16-i7-10510u-repeat"
+  }
 }

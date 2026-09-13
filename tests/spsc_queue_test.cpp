@@ -1,4 +1,4 @@
-#include "cpp_work/spsc_queue.hpp"
+#include "false_sharing/spsc_queue.hpp"
 
 #include <chrono>
 #include <cstdint>
@@ -12,7 +12,7 @@
 
 namespace {
 using namespace std::chrono_literals;
-using cpp_work::IndexLayout;
+using false_sharing::IndexLayout;
 
 void check(bool condition, const char* expression, int line) {
   if (!condition) {
@@ -52,7 +52,7 @@ struct Payload {
 
 template <IndexLayout Layout, bool Cached>
 void basic_and_model() {
-  using Q = cpp_work::SpscQueue<std::uint64_t, 8, Layout, Cached>;
+  using Q = false_sharing::SpscQueue<std::uint64_t, 8, Layout, Cached>;
   Q queue;
   static_assert(Q::capacity == 7);
   CHECK(!queue.try_pop());
@@ -84,7 +84,7 @@ void basic_and_model() {
   }
   CHECK(!queue.try_pop());
 
-  cpp_work::SpscQueue<int, 2, Layout, Cached> tiny;
+  false_sharing::SpscQueue<int, 2, Layout, Cached> tiny;
   for (int i = 0; i < 1000; ++i) {
     CHECK(tiny.try_emplace(i));
     CHECK(!tiny.try_emplace(-1));
@@ -93,14 +93,14 @@ void basic_and_model() {
   }
 
   const auto [head, tail] = queue.index_addresses();
-  const bool same = reinterpret_cast<std::uintptr_t>(head) / cpp_work::cache_line_size ==
-                    reinterpret_cast<std::uintptr_t>(tail) / cpp_work::cache_line_size;
+  const bool same = reinterpret_cast<std::uintptr_t>(head) / false_sharing::cache_line_size ==
+                    reinterpret_cast<std::uintptr_t>(tail) / false_sharing::cache_line_size;
   CHECK(same == (Layout == IndexLayout::shared));
 }
 
 template <IndexLayout Layout, bool Cached>
 void ownership() {
-  cpp_work::SpscQueue<std::unique_ptr<int>, 2, Layout, Cached> queue;
+  false_sharing::SpscQueue<std::unique_ptr<int>, 2, Layout, Cached> queue;
   auto first = std::make_unique<int>(42);
   CHECK(queue.try_push(std::move(first)));
   CHECK(!first);
@@ -113,7 +113,7 @@ void ownership() {
 
   CHECK(Payload::live == 0);
   {
-    cpp_work::SpscQueue<Payload, 4, Layout, Cached> objects;
+    false_sharing::SpscQueue<Payload, 4, Layout, Cached> objects;
     CHECK(objects.try_emplace(1));
     CHECK(objects.try_emplace(2));
     CHECK(Payload::live == 2);
@@ -130,7 +130,7 @@ void ownership() {
 
 template <IndexLayout Layout, bool Cached>
 void publication_and_reuse() {
-  using Q = cpp_work::SpscQueue<Payload, 2, Layout, Cached>;
+  using Q = false_sharing::SpscQueue<Payload, 2, Layout, Cached>;
   {
     Q queue;
     Gate construction;
@@ -161,7 +161,7 @@ void publication_and_reuse() {
 
 template <IndexLayout Layout, bool Cached, std::size_t Slots>
 void concurrent_fifo() {
-  cpp_work::SpscQueue<std::uint64_t, Slots, Layout, Cached> queue;
+  false_sharing::SpscQueue<std::uint64_t, Slots, Layout, Cached> queue;
   constexpr std::uint64_t count = 250'000;
   const auto deadline = std::chrono::steady_clock::now() + 15s;
   auto check_deadline = [&](std::uint64_t attempt) {

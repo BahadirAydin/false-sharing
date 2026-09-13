@@ -86,8 +86,10 @@ transfers or prove that every remote-index read misses.
 ## Reproduce a saved run
 
 Read `environment.json` for arguments, compiler flags, selected topology, and
-machine state. `source.tar.gz` preserves the exact CMake file, implementation,
-tests, and Python scripts used. Extract into a new directory, recreate an
+machine state. `source.tar.gz` contains the CMake file, implementation,
+tests, and Python scripts. For the bundled September 13 runs, names were
+normalized after measurement; `artifact_normalization.original_record_url`
+links to the original bytes in Git history. Extract into a new directory, recreate an
 appropriate toolchain, and invoke `python3 scripts/run_experiment.py` with the
 recorded workload and seed, selecting valid CPUs on your machine. Compare the
 shape and spread of the results; identical numbers are not expected.

@@ -40,7 +40,8 @@ The output is stored in a new directory under `results/`:
 - `samples.csv`: every measured round, including full/empty queue retry counts.
 - `environment.json`: CPU topology, compiler and flags, affinity, governor,
   frequency snapshots, workload, binary hash, and source hashes.
-- `source.tar.gz`: the exact implementation, tests, and scripts for that run.
+- `source.tar.gz`: implementation, tests, and scripts for that run. The bundled
+  September 13 snapshots have naming-only normalization documented in their metadata.
 - `tests.txt` and `benchmark.log`: validation and run records.
 - `summary.md` and `comparison.svg`: descriptive statistics and a chart.
 
@@ -74,10 +75,10 @@ results, and the substantial variation between runs.
 ## The queue
 
 ```cpp
-#include "cpp_work/spsc_queue.hpp"
+#include "false_sharing/spsc_queue.hpp"
 #include <memory>
 
-cpp_work::SpscQueue<std::unique_ptr<int>, 1024> queue;
+false_sharing::SpscQueue<std::unique_ptr<int>, 1024> queue;
 auto item = std::make_unique<int>(42);
 if (!queue.try_push(std::move(item))) {
   // Full. item still owns the value; the caller chooses what to do next.
@@ -141,12 +142,12 @@ CPU frequency. See [the experiment protocol](docs/experiment.md).
 
 ```bash
 cmake -S . -B build-asan -G Ninja -DCMAKE_BUILD_TYPE=Debug \
-  -DCMAKE_CXX_COMPILER=clang++ -DCPP_WORK_SANITIZER=address
+  -DCMAKE_CXX_COMPILER=clang++ -DFALSE_SHARING_SANITIZER=address
 cmake --build build-asan --target spsc_queue_test -j 2
 ctest --test-dir build-asan --output-on-failure
 
 cmake -S . -B build-tsan -G Ninja -DCMAKE_BUILD_TYPE=Debug \
-  -DCMAKE_CXX_COMPILER=clang++ -DCPP_WORK_SANITIZER=thread
+  -DCMAKE_CXX_COMPILER=clang++ -DFALSE_SHARING_SANITIZER=thread
 cmake --build build-tsan --target spsc_queue_test -j 2
 ctest --test-dir build-tsan --output-on-failure
 ```
@@ -167,11 +168,11 @@ still necessary.
 ## Files
 
 ```text
-include/cpp_work/spsc_queue.hpp   queue and index-layout policies
-benchmarks/false_sharing.cpp     counter and queue experiment
-tests/spsc_queue_test.cpp       standalone tests (no framework dependency)
-scripts/run_experiment.py       build, validate topology, run, preserve evidence
-scripts/summarize.py            regenerate summary and SVG from saved samples
-docs/                          design, methodology, and validation record
-results/                       measured runs, including source snapshots
+include/false_sharing/spsc_queue.hpp  queue and index-layout policies
+benchmarks/false_sharing.cpp         counter and queue experiment
+tests/spsc_queue_test.cpp            standalone tests (no framework dependency)
+scripts/run_experiment.py            build, validate topology, run, preserve evidence
+scripts/summarize.py                 regenerate summary and SVG from saved samples
+docs/                               design, methodology, and validation record
+results/                            measured runs, including source snapshots
 ```

@@ -19,12 +19,12 @@
 #include <thread>
 #include <vector>
 
-#include "cpp_work/spsc_queue.hpp"
+#include "false_sharing/spsc_queue.hpp"
 
 namespace {
 using Clock = std::chrono::steady_clock;
-using cpp_work::IndexLayout;
-constexpr auto line = cpp_work::cache_line_size;
+using false_sharing::IndexLayout;
+constexpr auto line = false_sharing::cache_line_size;
 static_assert(std::atomic<std::uint64_t>::is_always_lock_free);
 
 void relax() noexcept {
@@ -160,7 +160,7 @@ Sample counters(std::atomic<std::uint64_t>& a, std::atomic<std::uint64_t>* b, st
 
 template <IndexLayout Layout, bool Cached>
 Sample queue_run(std::uint64_t count, int cpu_a, int cpu_b) {
-  using Q = cpp_work::SpscQueue<std::uint64_t, 1024, Layout, Cached>;
+  using Q = false_sharing::SpscQueue<std::uint64_t, 1024, Layout, Cached>;
   auto queue = std::make_unique<Q>();  // Construct and allocate outside timing.
   const auto [head, tail] = queue->index_addresses();
   require(shares_line(head, tail) == (Layout == IndexLayout::shared), "Wrong queue index layout");
@@ -264,7 +264,7 @@ int main(int argc, char** argv) {
                        return queue_run<IndexLayout::separated, true>(n, options.cpu_a,
                                                                       options.cpu_b);
                      }});
-    using Q = cpp_work::SpscQueue<std::uint64_t, 1024>;
+    using Q = false_sharing::SpscQueue<std::uint64_t, 1024>;
     std::cerr << "C++=" << __cplusplus << " cache_line=" << line
               << " payload_bytes=" << sizeof(std::uint64_t)
               << " slot_storage_bytes=" << Q::slot_storage_bytes

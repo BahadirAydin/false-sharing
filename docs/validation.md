@@ -1,10 +1,10 @@
 # Validation record — September 13, 2026
 
-The project was implemented and tested in `/tmp/cpp-work-stage` before being
-copied to the requested `Projects/cpp-work/false-sharing` directory. Saved compile commands
-and paths retain that provenance. Source archives and SHA-256 manifests are
-included with the runs. No pre-existing false-sharing project's results were
-reused.
+Recorded timings are unchanged. Project identifiers and header paths in the
+saved source snapshots were normalized after measurement, and absolute build
+paths are represented as `<project>`. Their manifests identify this adjustment
+and hash the normalized sources. The [original records](https://github.com/BahadirAydin/false-sharing/tree/23dca052bc3344211d1d3d22b8aa26c4a9ca91b0/results)
+remain available in Git history, including the original source archives.
 
 ## Correctness and build checks
 

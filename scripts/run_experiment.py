@@ -107,8 +107,8 @@ def main():
         parser.error(f"Compiler not found: {args.compiler}")
     build = args.build_dir.resolve()
     command(["cmake", "-S", ROOT, "-B", build, "-G", "Ninja", "-DCMAKE_BUILD_TYPE=Release",
-             f"-DCMAKE_CXX_COMPILER={compiler}", "-DCPP_WORK_SANITIZER=none",
-             f"-DCPP_WORK_CACHE_LINE_SIZE={args.line_size}"])
+             f"-DCMAKE_CXX_COMPILER={compiler}", "-DFALSE_SHARING_SANITIZER=none",
+             f"-DFALSE_SHARING_CACHE_LINE_SIZE={args.line_size}"])
     command(["cmake", "--build", build, "-j", "2"])
     tests = command(["ctest", "--test-dir", build, "--output-on-failure"], capture_output=True)
     print(tests.stdout, end="")
