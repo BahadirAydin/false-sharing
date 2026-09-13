@@ -1,0 +1,7 @@
+Test project /tmp/cpp-work-stage/build-release
+    Start 1: spsc_queue
+1/1 Test #1: spsc_queue .......................   Passed    0.23 sec
+
+100% tests passed out of 1
+
+Total Test time (real) =   0.23 sec

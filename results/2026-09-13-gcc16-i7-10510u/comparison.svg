@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="544" viewBox="0 0 1100 544" role="img" aria-labelledby="title desc">
+<title id="title">False sharing: measured time per operation</title>
+<desc id="desc">Dots show median, whiskers show minimum to maximum across rounds. Counters and queues use separate horizontal scales.</desc>
+<rect width="100%" height="100%" fill="#fff"/>
+<g font-family="sans-serif" font-size="14" fill="#17212b">
+<text x="25" y="30" font-size="21">False sharing: time per operation</text>
+<text x="25" y="55">Median with min–max range. Lower is faster. Separate scale per group.</text>
+<text x="25" y="100" font-weight="bold">COUNTERS (0–31.1 ns/op)</text>
+<text x="25" y="145" font-size="12">same_counter / different_cores</text>
+<line x1="390" y1="140" x2="940" y2="140" stroke="#e4e9ee"/>
+<line x1="804.91" y1="140" x2="836.99" y2="140" stroke="#20618b" stroke-width="3"/>
+<circle cx="813.64" cy="140" r="5" fill="#20618b"/>
+<text x="970" y="145">23.947 ns</text>
+<text x="25" y="185" font-size="12">separate_lines / different_cores</text>
+<line x1="390" y1="180" x2="940" y2="180" stroke="#e4e9ee"/>
+<line x1="464.47" y1="180" x2="470.69" y2="180" stroke="#20618b" stroke-width="3"/>
+<circle cx="464.73" cy="180" r="5" fill="#20618b"/>
+<text x="970" y="185">4.224 ns</text>
+<text x="25" y="225" font-size="12">shared_line / different_cores</text>
+<line x1="390" y1="220" x2="940" y2="220" stroke="#e4e9ee"/>
+<line x1="800.17" y1="220" x2="890.00" y2="220" stroke="#20618b" stroke-width="3"/>
+<circle cx="819.24" cy="220" r="5" fill="#20618b"/>
+<text x="970" y="225">24.263 ns</text>
+<text x="25" y="265" font-size="12">shared_line / smt_siblings</text>
+<line x1="390" y1="260" x2="940" y2="260" stroke="#e4e9ee"/>
+<line x1="555.58" y1="260" x2="583.62" y2="260" stroke="#20618b" stroke-width="3"/>
+<circle cx="555.81" cy="260" r="5" fill="#20618b"/>
+<text x="970" y="265">9.373 ns</text>
+<text x="25" y="305" font-size="12">single_writer / one_thread</text>
+<line x1="390" y1="300" x2="940" y2="300" stroke="#e4e9ee"/>
+<line x1="464.43" y1="300" x2="464.82" y2="300" stroke="#20618b" stroke-width="3"/>
+<circle cx="464.53" cy="300" r="5" fill="#20618b"/>
+<text x="970" y="305">4.213 ns</text>
+<text x="25" y="325" font-weight="bold">QUEUE (0–23.9 ns/op)</text>
+<text x="25" y="370" font-size="12">separated_cached / different_cores</text>
+<line x1="390" y1="365" x2="940" y2="365" stroke="#e4e9ee"/>
+<line x1="526.97" y1="365" x2="661.79" y2="365" stroke="#087a60" stroke-width="3"/>
+<circle cx="558.63" cy="365" r="5" fill="#087a60"/>
+<text x="970" y="370">7.314 ns</text>
+<text x="25" y="410" font-size="12">separated_uncached / different_cores</text>
+<line x1="390" y1="405" x2="940" y2="405" stroke="#e4e9ee"/>
+<line x1="594.97" y1="405" x2="629.81" y2="405" stroke="#087a60" stroke-width="3"/>
+<circle cx="610.27" cy="405" r="5" fill="#087a60"/>
+<text x="970" y="410">9.554 ns</text>
+<text x="25" y="450" font-size="12">shared_cached / different_cores</text>
+<line x1="390" y1="445" x2="940" y2="445" stroke="#e4e9ee"/>
+<line x1="777.51" y1="445" x2="890.00" y2="445" stroke="#087a60" stroke-width="3"/>
+<circle cx="833.00" cy="445" r="5" fill="#087a60"/>
+<text x="970" y="450">19.214 ns</text>
+<text x="25" y="490" font-size="12">shared_uncached / different_cores</text>
+<line x1="390" y1="485" x2="940" y2="485" stroke="#e4e9ee"/>
+<line x1="726.08" y1="485" x2="813.45" y2="485" stroke="#087a60" stroke-width="3"/>
+<circle cx="756.47" cy="485" r="5" fill="#087a60"/>
+<text x="970" y="490">15.895 ns</text>
+</g>
+</svg>

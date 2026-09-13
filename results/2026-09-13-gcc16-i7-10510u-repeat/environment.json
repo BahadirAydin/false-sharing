@@ -1,0 +1,190 @@
+{
+  "status": "complete",
+  "started_utc": "2026-09-13T12:45:57.370381+00:00",
+  "cpu_model": "Intel(R) Core(TM) i7-10510U CPU @ 1.80GHz",
+  "platform": "Linux-7.2.4-arch1-2-x86_64-with-glibc2.44",
+  "cpu_topology": [
+    {
+      "cpu": 0,
+      "package": 0,
+      "core": 0,
+      "siblings": "0,4",
+      "l1_data_line_bytes": 64,
+      "l1_type": "Data"
+    },
+    {
+      "cpu": 1,
+      "package": 0,
+      "core": 1,
+      "siblings": "1,5",
+      "l1_data_line_bytes": 64,
+      "l1_type": "Data"
+    },
+    {
+      "cpu": 2,
+      "package": 0,
+      "core": 2,
+      "siblings": "2,6",
+      "l1_data_line_bytes": 64,
+      "l1_type": "Data"
+    },
+    {
+      "cpu": 3,
+      "package": 0,
+      "core": 3,
+      "siblings": "3,7",
+      "l1_data_line_bytes": 64,
+      "l1_type": "Data"
+    },
+    {
+      "cpu": 4,
+      "package": 0,
+      "core": 0,
+      "siblings": "0,4",
+      "l1_data_line_bytes": 64,
+      "l1_type": "Data"
+    },
+    {
+      "cpu": 5,
+      "package": 0,
+      "core": 1,
+      "siblings": "1,5",
+      "l1_data_line_bytes": 64,
+      "l1_type": "Data"
+    },
+    {
+      "cpu": 6,
+      "package": 0,
+      "core": 2,
+      "siblings": "2,6",
+      "l1_data_line_bytes": 64,
+      "l1_type": "Data"
+    },
+    {
+      "cpu": 7,
+      "package": 0,
+      "core": 3,
+      "siblings": "3,7",
+      "l1_data_line_bytes": 64,
+      "l1_type": "Data"
+    }
+  ],
+  "selected_cpus": {
+    "producer_or_counter_a": 1,
+    "consumer_or_counter_b": 2,
+    "smt": 5
+  },
+  "line_size": 64,
+  "items": 5000000,
+  "rounds": 15,
+  "seed": 20260914,
+  "warmup_items_per_case": 100000,
+  "compiler_version": "g++ (GCC) 16.2.1 20260810\nCopyright (C) 2026 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n",
+  "compile_commands": [
+    {
+      "directory": "/tmp/cpp-work-stage/build-release",
+      "command": "/usr/bin/g++ -DCPP_WORK_CACHE_LINE_SIZE=64 -I/tmp/cpp-work-stage/include -O3 -DNDEBUG -std=c++23 -Wall -Wextra -Wpedantic -Wconversion -Wshadow -o CMakeFiles/spsc_queue_test.dir/tests/spsc_queue_test.cpp.o -c /tmp/cpp-work-stage/tests/spsc_queue_test.cpp",
+      "file": "/tmp/cpp-work-stage/tests/spsc_queue_test.cpp",
+      "output": "/tmp/cpp-work-stage/build-release/CMakeFiles/spsc_queue_test.dir/tests/spsc_queue_test.cpp.o"
+    },
+    {
+      "directory": "/tmp/cpp-work-stage/build-release",
+      "command": "/usr/bin/g++ -DCPP_WORK_CACHE_LINE_SIZE=64 -I/tmp/cpp-work-stage/include -O3 -DNDEBUG -std=c++23 -Wall -Wextra -Wpedantic -Wconversion -Wshadow -o CMakeFiles/false_sharing_bench.dir/benchmarks/false_sharing.cpp.o -c /tmp/cpp-work-stage/benchmarks/false_sharing.cpp",
+      "file": "/tmp/cpp-work-stage/benchmarks/false_sharing.cpp",
+      "output": "/tmp/cpp-work-stage/build-release/CMakeFiles/false_sharing_bench.dir/benchmarks/false_sharing.cpp.o"
+    }
+  ],
+  "command": [
+    "/tmp/cpp-work-stage/build-release/false_sharing_bench",
+    "--cpu-a",
+    "1",
+    "--cpu-b",
+    "2",
+    "--items",
+    "5000000",
+    "--rounds",
+    "15",
+    "--seed",
+    "20260914",
+    "--cpu-smt",
+    "5"
+  ],
+  "before": {
+    "1": {
+      "scaling_driver": "intel_pstate",
+      "scaling_governor": "powersave",
+      "scaling_cur_freq": "4300036",
+      "scaling_min_freq": "400000",
+      "scaling_max_freq": "4900000",
+      "cpuinfo_max_freq": "4900000"
+    },
+    "2": {
+      "scaling_driver": "intel_pstate",
+      "scaling_governor": "powersave",
+      "scaling_cur_freq": "4300191",
+      "scaling_min_freq": "400000",
+      "scaling_max_freq": "4900000",
+      "cpuinfo_max_freq": "4900000"
+    },
+    "5": {
+      "scaling_driver": "intel_pstate",
+      "scaling_governor": "powersave",
+      "scaling_cur_freq": "4300120",
+      "scaling_min_freq": "400000",
+      "scaling_max_freq": "4900000",
+      "cpuinfo_max_freq": "4900000"
+    },
+    "intel_pstate_no_turbo": "0",
+    "cpufreq_boost": null,
+    "load_average": [
+      2.06591796875,
+      1.58203125,
+      1.28759765625
+    ]
+  },
+  "git_head": null,
+  "source_sha256": {
+    "CMakeLists.txt": "3b9b115f44e7041b23c828e7765fc824f8bd314cc8f9c7402085339a8fd6ee3f",
+    "benchmarks/false_sharing.cpp": "c0d2b7116d6f248a0e045588cf1a0f4c9bdcc538720355e5c7df06d5b2318656",
+    "include/cpp_work/spsc_queue.hpp": "3bdc1f3ce583e66ffc5f79d5e6b766a229f01a3a3bc735be3d80bae724ff1875",
+    "scripts/run_experiment.py": "37c4237a4102986d9a307c1596724102c21dbbd4ebdc0587e37da89e7dad7274",
+    "scripts/summarize.py": "5bd7e4477182600e16a5bcd4692bfa48e0a87b5bce5dc327952f934d2ca3b1bf",
+    "tests/spsc_queue_test.cpp": "3b5b1ecc836d0ee9e9584192f6be9300637bf38ed6bf86808f9008e02cba2afc"
+  },
+  "binary_sha256": "30ee5efeae7dafb18f89ece19c3db7878d4fede47f765ab174e2969f33e3f449",
+  "notes": "Queue ns/op is amortized wall time, not per-message latency. Every queue payload is checked in order inside the timed loop. CPU frequency samples are snapshots, not a stable-frequency guarantee.",
+  "after": {
+    "1": {
+      "scaling_driver": "intel_pstate",
+      "scaling_governor": "powersave",
+      "scaling_cur_freq": "4301602",
+      "scaling_min_freq": "400000",
+      "scaling_max_freq": "4900000",
+      "cpuinfo_max_freq": "4900000"
+    },
+    "2": {
+      "scaling_driver": "intel_pstate",
+      "scaling_governor": "powersave",
+      "scaling_cur_freq": "4304964",
+      "scaling_min_freq": "400000",
+      "scaling_max_freq": "4900000",
+      "cpuinfo_max_freq": "4900000"
+    },
+    "5": {
+      "scaling_driver": "intel_pstate",
+      "scaling_governor": "powersave",
+      "scaling_cur_freq": "4299996",
+      "scaling_min_freq": "400000",
+      "scaling_max_freq": "4900000",
+      "cpuinfo_max_freq": "4900000"
+    },
+    "intel_pstate_no_turbo": "0",
+    "cpufreq_boost": null,
+    "load_average": [
+      2.2099609375,
+      1.62939453125,
+      1.30615234375
+    ]
+  },
+  "finished_utc": "2026-09-13T12:46:08.761727+00:00"
+}
